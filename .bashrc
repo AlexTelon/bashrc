@@ -107,4 +107,4 @@ alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
 alias ......='cd ../../../../../..'
 
-alias goschool='cd ~/school/tddd77/pum/'
+
