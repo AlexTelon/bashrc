@@ -107,7 +107,7 @@ alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
 alias ......='cd ../../../../../..'
 
-alias emacs='sudo emacs -nw'
+alias emacs='emacs -nw'
 alias grep='grep --color=always'
 alias less='less -R'
 
