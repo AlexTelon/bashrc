@@ -17,7 +17,6 @@ RUN apt-get -y update \
         zlib1g-dev \
         unzip \
         emacs24 \
-        && apt-get autoremove \
         &&  apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 
@@ -63,7 +62,7 @@ USER alex
 WORKDIR /home/alex
 
 #fix emacs plugins
-COPY ../emacs_plugins ~/.emacs.d/plugins/
-COPY ../.emacs ~/
+COPY ../../emacs_plugins ~/.emacs.d/plugins/
+COPY ../../.emacs ~/
 
 ENTRYPOINT
