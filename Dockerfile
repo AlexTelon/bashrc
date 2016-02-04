@@ -5,6 +5,7 @@ FROM ubuntu:15.10
 RUN apt-get -y update \
         && apt-get -y install \
         sudo \
+	git \
         wget \
         emacs24 \
 	make \
@@ -17,20 +18,16 @@ RUN useradd -ms /bin/bash alex \
     && adduser alex sudo
 
 
-
-
-
 #fix emacs plugins
-COPY emacs_plugins /home/alex/.emacs.d/plugins/
+COPY emacs_plugins/ /home/alex/.emacs.d/plugins/
 COPY .emacs /home/alex/.emacs
 
 WORKDIR /home/alex/.emacs.d/
 
 #WORKDIR ~/
 # we are not cloning since we want to get our own config.mk file in magit
-RUN mkdir site-list
-RUN mv /home/alex/.emacs.d/plugins/magit /home/alex/.emacs.d/site-list/
-#RUN echo "cd " > derp.txt    
+RUN mkdir site-lisp
+RUN mv /home/alex/.emacs.d/plugins/magit/ /home/alex/.emacs.d/site-lisp/
 WORKDIR /home/alex/.emacs.d/site-lisp/magit/
 #RUN make
 
