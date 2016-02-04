@@ -1,0 +1,5 @@
+# want to ignore * here but it seems i cant ignore a folder. tried in different order and stuff, still didnt get unignored..
+!magit-2.5.0/
+!*.el
+!.gitignore
+

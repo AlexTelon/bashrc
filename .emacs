@@ -7,6 +7,9 @@
 (global-set-key (kbd "RET") 'newline-and-indent) ;; filips lovechild ;)
 (global-set-key (kbd "C-z") 'undo) ;; this so that i dont minimize it by mistake I think
 
+(setq-default indent-tabs-mode nil
+	                    tab-width 2)
+
 ;; python things
 (setq python-remove-cwd-from-path nil)
  
@@ -24,6 +27,7 @@
 ;; other things
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (load "dash.el")
+(load "with-editor.el")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
@@ -33,6 +37,14 @@
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode))
+
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
+(require 'magit)
+(with-eval-after-load 'info
+		      (info-initialize)
+		      (add-to-list 'Info-directory-list
+				   "~/.emacs.d/site-lisp/magit/Documentation/"))
 
 
 (global-set-key (kbd "C-c o") 'ff-find-other-file) ;; dont know why I have two..
