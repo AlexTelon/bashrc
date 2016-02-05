@@ -20,7 +20,7 @@ RUN useradd -ms /bin/bash alex \
 
 #fix emacs plugins
 COPY emacs_plugins/ /home/alex/.emacs.d/plugins/
-COPY .emacs /home/alex/.emacs
+COPY .emacs /home/alex
 
 WORKDIR /home/alex/.emacs.d/
 
@@ -34,4 +34,7 @@ RUN mv /home/alex/.emacs.d/plugins/magit/ /home/alex/.emacs.d/site-lisp/
 WORKDIR /home/alex/
 USER alex
 
+VOLUME /home/alex/dev
+
+CMD /bin/bash
 ENTRYPOINT
