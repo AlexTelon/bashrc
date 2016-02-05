@@ -32,7 +32,8 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode))
+(require 'cmake-mode)
+(add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode)) ;hack, better than nothing
 
 
 (global-set-key (kbd "C-c o") 'ff-find-other-file) ;; dont know why I have two..
