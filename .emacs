@@ -36,7 +36,8 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode))
+(require 'cmake-mode)
+(add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode)) ;hack, better than nothing
 
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
