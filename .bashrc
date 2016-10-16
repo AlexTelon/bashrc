@@ -111,3 +111,6 @@ alias emacs='emacs -nw'
 alias grep='grep --color=always'
 alias less='less -R'
 
+alias editi3='emacs ~/.i3/config &'
+alias editbash='emacs ~/.bashrc &'
+alias editprofile='emacs ~/.profile &'
