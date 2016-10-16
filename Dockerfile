@@ -25,10 +25,6 @@ COPY .emacs /home/alex
 WORKDIR /home/alex/.emacs.d/
 
 #WORKDIR ~/
-# we are not cloning since we want to get our own config.mk file in magit
-RUN mkdir site-lisp
-RUN mv /home/alex/.emacs.d/plugins/magit/ /home/alex/.emacs.d/site-lisp/
-
 #RUN make
 
 WORKDIR /home/alex/

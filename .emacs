@@ -40,12 +40,12 @@
 (add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode)) ;hack, better than nothing
 
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
+(add-to-list 'load-path "~/.emacs.d/plugins/magit/lisp")
 (require 'magit)
 (with-eval-after-load 'info
 		      (info-initialize)
 		      (add-to-list 'Info-directory-list
-				   "~/.emacs.d/site-lisp/magit/Documentation/"))
+				   "~/.emacs.d/plugins/magit/Documentation/"))
 
 
 (global-set-key (kbd "C-c o") 'ff-find-other-file) ;; dont know why I have two..
