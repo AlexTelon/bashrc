@@ -262,3 +262,4 @@ exec_always feh --bg-scale /home/alex/.wallpapers/wallpaperGradientBlue.jpg
 
 #gives opacity when specified and -f gives transition effect
 exec compton
+exec xrandr --output VGA-1 --mode 2560x1440
