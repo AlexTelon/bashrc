@@ -4,4 +4,5 @@ sudo apt-get install -y	git \
      emacs24 \
      make \
      x11-xserver-utils \
-     gnome-terminal
+     gnome-terminal \
+     firefox
