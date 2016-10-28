@@ -9,6 +9,7 @@ cp -ir .bashrc ~/
 cp -ir .emacs ~/
 mkdir -p /home/alex/.config/gtk-3.0
 cp -ir settings.ini /home/alex/.config/gtk-3.0
+cp -ir plugins ~/.emacs.d/
 
 #install manually
 
