@@ -1,6 +1,96 @@
+(load-theme 'tsdh-dark)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 (require 'package)
+;; (add-to-list 'package-archives
+;;              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives
+;;              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
+
+(package-initialize)
+
+(set-face-attribute 'mode-line nil
+		    :box '(:width 0))
+
+(column-number-mode)
+
+(ido-mode)
+
+(show-paren-mode)
+
+(global-hl-line-mode)
+
+;; (winner-mode t)
+
+;; (windmove-default-keybindings)
+
+(global-set-key (kbd "M-x") 'smex)
+
+(nlinum-mode)
+
+(global-undo-tree-mode)
+(global-set-key (kbd "M-/") 'undo-tree-visualize)
+
+(global-set-key (kbd "C->") 'ace-jump-mode)
+
+;;mc-extras
+;; (define-key rectangle-mark-mode-map (kbd "C-. C-,") 'mc/rect-rectangle-to-multiple-cursors)
+
+(global-set-key (kbd "C-}") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-{") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-{") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (if (derived-mode-p 'c-mode 'c++-mode)
+                (cppcm-reload-all)
+              )))
+
+;; maybe change gud-gdb to realgud thing?
+(global-set-key (kbd "C-c C-g")
+                '(lambda ()(interactive) (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; (require 'auto-complete-config)
+;; (require 'auto-complete-clang)
+;; (ac-common-setup)
+;; (add-to-list 'ac-sources 'ac-clang)
+
+;; (global-flycheck-mode)
+;; (require 'rtags)
+;; (cmake-ide-setup)
+
+(rtags-start-process-unless-running)
+(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+(add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
+(global-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
+(global-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
+
+
+;;realgud debugger
+;;(load-library realgud)
+
+;; (global-set-key (
 
 (put 'downcase-region 'disabled nil)
 
@@ -28,9 +118,13 @@
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (load "dash.el")
 (load "with-editor.el")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-(ac-config-default)
+
+;; switching to company-mode instead
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+;; (ac-config-default)
+
+
 ;(iswitchb-mode 1)
 
 (require 'dockerfile-mode)
@@ -48,10 +142,8 @@
 				   "~/.emacs.d/plugins/magit/Documentation/"))
 
 
-(global-set-key (kbd "C-c o") 'ff-find-other-file) ;; dont know why I have two..
 (global-set-key (kbd "M-o") 'ff-find-other-file)
-
-(global-set-key (kbd "C-.") 'other-window) ;; yummy
+(global-set-key (kbd "C-,") 'other-window) ;; yummy
 
 (setq ff-special-constructs 'nil)
 (add-to-list 'auto-mode-alist '("\\.h" . c++-mode))
@@ -142,4 +234,3 @@
 ;;  )
 ;;(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 ;; should add flyspell-prog-mode
-
